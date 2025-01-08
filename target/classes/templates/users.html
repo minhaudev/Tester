@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div>
+    <nav class="bg-white border border-gray-200">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">Team</span>
+            </a>
+            <button
+                    data-collapse-toggle="navbar-default"
+                    type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default"
+                    aria-expanded="false"
+            >
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15"
+                    />
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white"
+                >
+                    <li>
+                        <a
+                                th:href="@{/login}"
+                                class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0"
+                                aria-current="page"
+                        >Login</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                                th:href="@{/users/add}"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                        >Register</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-screen-xl mx-auto p-4 mt-24">
+        <div class="text-right mb-6">
+            <a
+                    th:href="@{/users/add}"
+                    class="w-fit h-11 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 ring-transparent font-semibold rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 text-white transition-all"
+            >
+                New User
+            </a>
+        </div>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Id</th>
+                    <th scope="col" class="px-6 py-3">User name</th>
+                    <th scope="col" class="px-6 py-3">Full name</th>
+                    <th scope="col" class="px-6 py-3">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="odd:bg-white even:bg-gray-50 border-b" th:each="user : ${users}">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap" th:text="${user.id}"></th>
+                    <td class="px-6 py-4" th:text="${user.username}">Silver</td>
+                    <td class="px-6 py-4" th:text="${user.firstName} + ' ' + ${user.lastName}">Laptop</td>
+                    <td class="px-6 py-4 flex gap-4">
+                        <a href="#" class="font-medium text-blue-600 hover:underline" th:href="@{/users/update/{id}(id=${user.id})} " >Edit</a>
+                        <a class="font-medium text-red-600 hover:underline" th:href="@{/users/delete/{id}(id=${user.id})}"
+                        >Delete</a
+                        >
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

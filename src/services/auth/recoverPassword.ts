@@ -3,7 +3,7 @@ import {request} from "../axios";
 
 export const forgetpassword = async (email: string) => {
     try {
-        const response = await request.post(`/auth/recover`, {
+        const response = await request.post(`/api/auth/recover`, {
             email
         });
 

@@ -2,7 +2,7 @@ import {request} from "../axios";
 
 export const ShowCompany = async (id: string, token: string) => {
     try {
-        const response = await request.get(`/company/${id}`, {
+        const response = await request.get(`/api/company/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -18,7 +18,7 @@ export const ShowCompany = async (id: string, token: string) => {
 export const getUser = async (idUser: string, token: string) => {
     console.log(idUser, token);
     try {
-        const response = await request.get(`/users/${idUser}`, {
+        const response = await request.get(`/api/users/${idUser}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

@@ -3,7 +3,7 @@ import {request} from "../axios";
 export const signInUser = async (username: string, password: string) => {
     console.log(username, password);
     try {
-        const response = await request.post(`/auth/login`, {
+        const response = await request.post(`/api/auth/login`, {
             username,
             password
         });

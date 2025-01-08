@@ -1,7 +1,7 @@
 import {request} from "../axios";
 
 export const GetAllCompany = async () => {
-    const reponse = await request.get("/company");
+    const reponse = await request.get("/api/company");
     console.log("data", reponse);
 
     return reponse;
@@ -25,7 +25,7 @@ export const RegisterUser = async (
         birthday
     );
     try {
-        const response = await request.post(`/users`, {
+        const response = await request.post(`/api/users`, {
             username,
             password,
             firstName,
