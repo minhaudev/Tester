@@ -3,6 +3,7 @@ package sourse.crud.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sourse.crud.dto.request.CompanyCreationRequest;
+import sourse.crud.dto.response.UserResponse;
 import sourse.crud.entity.Company;
 import sourse.crud.repository.CompanyRepository;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Service
 public class CompanyService {
     @Autowired
-private  CompanyRepository companyRepository;
+  CompanyRepository companyRepository;
     public Company createCompany(CompanyCreationRequest request ){
         System.out.println("request"+ request);
         Company company = new Company();
@@ -27,6 +28,7 @@ private  CompanyRepository companyRepository;
                 .orElseThrow(() -> new RuntimeException( "company not found"));
     };
     public Company   updateCompany (String id, CompanyCreationRequest request) {
+        System.out.println("request"+ request);
         Company company = companyRepository.findById(id).orElseThrow(() -> new RuntimeException( "company not found"));
         company.setName(request.getName());
         company.setAddress(request.getAddress());

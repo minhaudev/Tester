@@ -32,9 +32,10 @@ public class AuthenticationService {
     UserRepository userRepository;
     @NonFinal
     protected static final String SIGNER_KEY = "44G4LjP6LKI6ECmzy8p5oocl+CLSyjcKca+rNxiA3bajEWAJVPvaA+16f/J7d8dz";
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        var user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow(() -> new AppException(ErrorCode.USER_EXITTED));
+    public AuthenticationResponse login(AuthenticationRequest request) {
+        System.out.println("request"+  request);
+        var user = userRepository.findByUsername(request.getUsername()) 
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         boolean authenticated = passwordEncoder.matches(request.getPassword(), user.getPassword());
         if (!authenticated)
@@ -43,12 +44,14 @@ public class AuthenticationService {
         var token = generateToken(user.getUsername());
 
         return AuthenticationResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
                 .token(token)
                 .authentication(true)
                 .build();
     }
 
-    private String generateToken(String username) {
+     String generateToken(String username) {
         try {
             // Tạo phần header cho JWS
             JWSHeader header = new JWSHeader(JWSAlgorithm.HS256);

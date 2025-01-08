@@ -1,10 +1,12 @@
 server:
   port: 8000
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: root
+    # Cập nhật URL kết nối đến cơ sở dữ liệu PostgreSQL trên Render
+    url: jdbc:postgresql://dpg-ctv2e08gph6c73eqj28g-a.oregon-postgres.render.com:5432/test_database_mt2x
+    username: root
+    password: eJVlbnAkqC1x7F0X3qlKTylAkYULyq1x
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -20,3 +22,6 @@ spring:
     cache: false
     mode: HTML
     encoding: UTF-8
+
+  jwt:
+    signerKey: "44G4LjP6LKI6ECmzy8p5oocl+CLSyjcKca+rNxiA3bajEWAJVPvaA+16f/J7d8dz"

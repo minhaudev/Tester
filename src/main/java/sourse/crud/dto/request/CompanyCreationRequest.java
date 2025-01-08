@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class CompanyCreationRequest {
-    private String name;
-    private String address;
-    private String fieldOfActivity;
+     String name;
+     String address;
+     String fieldOfActivity;
 }
